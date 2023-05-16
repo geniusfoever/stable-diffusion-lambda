@@ -11,7 +11,7 @@ model:
     cond_stage_key: "txt"
     image_size: 64
     channels: 4
-    cond_stage_trainable: false   # Note: different from the one we trained before
+    cond_stage_trainable: true   # Note: different from the one we trained before
     conditioning_key: crossattn
     scale_factor: 0.18215
 
@@ -80,24 +80,17 @@ data:
       params:
         name: lambdalabs/pokemon-blip-captions
         image_transforms:
-        - target: torchvision.transforms.Resize
-          params:
-            size: 512
-            interpolation: 3
-        - target: torchvision.transforms.RandomCrop
-          params:
-            size: 512
         - target: torchvision.transforms.RandomHorizontalFlip
     validation:
       target: ldm.data.simple.TextOnly
       params:
         captions:
-        - "A pokemon with green eyes, large wings, and a hat"
-        - "A cute bunny rabbit"
-        - "Yoda"
-        - "An epic landscape photo of a mountain"
+        - "A man in a brown and gray open-collar half-sleeve shirt, long blue bleached jeans, and a pair of brown sneakers, wearing a silver watch"
+        - "A woman wearing a black professional suit top and a black professional suit knee length skirt"
+        - "A male wearing a gray long-sleeved coat with a dark brown vest, a gray and black knitted hat, brown pants, and black shoes with a white collar."
+        - "A woman wearing a black mask, white full-frame glasses, dark scarf, white long sleeves, green jacket and black pants"
         output_size: 512
-        n_gpus: 2 # small hack to sure we see all our samples
+        n_gpus: 1 # small hack to sure we see all our samples
 
 
 lightning:
