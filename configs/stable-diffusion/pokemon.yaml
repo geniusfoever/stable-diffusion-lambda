@@ -78,7 +78,7 @@ data:
     train:
       target: ldm.data.simple.hf_dataset
       params:
-        name: PeterPanTheGenius/WISE1
+        name: PeterPanTheGenius/WISE2
         image_transforms:
         - target: torchvision.transforms.RandomHorizontalFlip
     validation:
